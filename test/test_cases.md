@@ -29,3 +29,32 @@ Test case descriptions
 4.1 Creator Earnings API
 - Get all creators' earnings
 - Proper JSON response format
+
+
+Above are some test cases for the system that have been implemented. Here are some feature and test cases for the system improvement in the future: 
+1 Asset Import
+- Validate price is greater than 0
+- Handle duplicate asset titles
+- Handle large JSON files (100+ assets)## 
+
+2. Customer Features
+Asset Browsing
+- Pagination of assets
+- Sort assets by price/date
+
+Authentication & Authorization
+
+4.1 User Authentication
+- Session management
+- Logout functionality
+
+4.2 Role-based Access
+- Customer access to purchase features only
+- Redirect unauthorized access
+
+5. Edge Cases & Error Handling
+
+5.1 Input Validation
+- Handle malformed JSON imports
+- Validate price formats
+- Validate URL formats
