@@ -1,5 +1,10 @@
 # Digital Assets Platform
 
+I have added a script to create three accounts, each corresponding to a specific role: admin, creator, and customer.
+To test with a specific role, please open a new incognito tab (as I didn’t have enough time to implement the logout feature) and log in via /login using the credentials defined in the seeds.exs file.
+
+Additionally, I’ve included a sample assets JSON file for importing at /priv/sample_assets.json.
+
 ## Features
 
 ### For Creators
@@ -36,7 +41,6 @@
 1. Clone the repository:
 ```bash
 git clone https://github.com/liamhuynhf/digital_assets_platform.git
-cd digital_assets
 ```
 
 2. Install dependencies:
@@ -51,10 +55,10 @@ mix ecto.setup
 
 4. Start Phoenix server:
 ```bash
-iex -S mix phx.server
+mix phx.server
 ```
 
-Visit [`localhost:4000`](http://localhost:4000) in your browser.
+Visit [`localhost:4000/login`](http://localhost:4000/login) in your browser.
 
 ## Usage
 
