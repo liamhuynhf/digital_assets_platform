@@ -1,0 +1,20 @@
+[
+    {
+      "title": "Logo Design",
+      "description": "Simple company logo in PNG format",
+      "file_url": "https://example.com/files/logo.png",
+      "price": 25.00
+    },
+    {
+      "title": "Website Template",
+      "description": "Basic HTML/CSS template for small business",
+      "file_url": "https://example.com/files/template.zip",
+      "price": 45.00
+    },
+    {
+      "title": "Stock Photo",
+      "description": "High resolution landscape photo",
+      "file_url": "https://example.com/files/photo.jpg",
+      "price": 10.00
+    }
+]
