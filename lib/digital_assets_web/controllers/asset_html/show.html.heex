@@ -1,0 +1,31 @@
+<.header>
+  {@asset.title}
+  <:subtitle>By {@asset.creator.email}</:subtitle>
+</.header>
+
+<div class="mt-8 max-w-2xl mx-auto">
+  <div class="bg-white rounded-lg shadow p-6">
+    <div class="prose">
+      <p>{@asset.description}</p>
+    </div>
+
+    <div class="mt-8 flex justify-between items-center">
+      <span class="text-2xl font-bold">${@asset.price}</span>
+
+      <%= if @already_purchased do %>
+        <.link
+          href={~p"/purchases/#{@asset.id}/download"}
+          class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+        >
+          Download
+        </.link>
+      <% else %>
+        <.form for={%{}} action={~p"/assets/#{@asset.id}/purchase"} method="post">
+          <.button class="bg-brand text-white px-6 py-2 rounded hover:bg-brand/90">
+            Purchase
+          </.button>
+        </.form>
+      <% end %>
+    </div>
+  </div>
+</div>

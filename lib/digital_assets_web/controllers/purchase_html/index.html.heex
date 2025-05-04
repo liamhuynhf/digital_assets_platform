@@ -1,0 +1,81 @@
+<div class="max-w-4xl mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <.link
+      navigate={~p"/assets"}
+      class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 mr-2"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      Back to Assets
+    </.link>
+  </div>
+  <.header class="text-2xl mb-8">
+    My Purchases
+  </.header>
+
+  <div class="mt-10 overflow-x-auto shadow-lg rounded-lg">
+    <table class="min-w-full bg-white">
+      <thead class="bg-gray-100">
+        <tr>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/4"
+          >
+            Title
+          </th>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5"
+          >
+            Description
+          </th>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/6"
+          >
+            Purchase Date
+          </th>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/6"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <%= for purchase <- @purchases do %>
+          <tr class="hover:bg-gray-50 transition duration-150">
+            <td class="px-8 py-6 text-base font-medium text-gray-900">
+              {purchase.asset.title}
+            </td>
+            <td class="px-8 py-6 text-base text-gray-600 max-w-md">
+              {purchase.asset.description}
+            </td>
+            <td class="px-8 py-6 text-base text-gray-600">
+              {Calendar.strftime(purchase.inserted_at, "%B %d, %Y")}
+            </td>
+            <td class="px-8 py-6">
+              <.link
+                href={~p"/purchases/#{purchase.id}/download"}
+                class="inline-flex items-center px-4 py-2.5 text-base font-medium rounded-md text-white bg-brand hover:bg-brand/90 transition duration-150"
+              >
+                Download
+              </.link>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

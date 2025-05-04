@@ -1,0 +1,119 @@
+<div class="max-w-4xl mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <.header class="text-xl text-gray-700">
+      Available Assets
+    </.header>
+
+    <div class="flex items-center gap-4">
+      <.link
+        navigate={~p"/my-purchases"}
+        class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-brand rounded-md hover:bg-brand/90 transition-colors shadow-sm"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 mr-2"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 000.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z" />
+          <path d="M16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+        </svg>
+        My Purchases
+      </.link>
+    </div>
+  </div>
+
+  <div class="mt-6 overflow-x-auto shadow-lg rounded-lg">
+    <table class="min-w-full bg-white">
+      <thead class="bg-gray-100">
+        <tr>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/4"
+          >
+            Title
+          </th>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5"
+          >
+            Description
+          </th>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/6"
+          >
+            Price
+          </th>
+          <th
+            scope="col"
+            class="px-8 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/6"
+          >
+            Actions
+          </th>
+          <th scope="col" class="px-8 py-4 text-right text-sm font-semibold text-gray-700 w-12">
+            <input
+              type="checkbox"
+              class="rounded border-gray-300 text-brand focus:ring-brand"
+              phx-click="toggle_all"
+              phx-value-assets={Enum.map(@assets, & &1.id)}
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <%= for asset <- @assets do %>
+          <tr class="hover:bg-gray-50 transition duration-150">
+            <td class="px-8 py-6 text-base font-medium text-gray-900">
+              {asset.title}
+            </td>
+            <td class="px-8 py-6 text-base text-gray-600 max-w-md">
+              {asset.description}
+            </td>
+            <td class="px-8 py-6 text-base font-medium text-gray-900">
+              ${asset.price}
+            </td>
+            <td class="px-8 py-6">
+              <.link
+                href={~p"/assets/#{asset.id}/purchase"}
+                method="post"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-brand rounded-md hover:bg-brand/90 transition-colors"
+              >
+                Purchase
+              </.link>
+            </td>
+            <td class="px-8 py-6 text-right">
+              <input
+                type="checkbox"
+                name="selected_assets[]"
+                value={asset.id}
+                class="rounded border-gray-300 text-brand focus:ring-brand"
+                form="bulk-purchase-form"
+              />
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <.form for={%{}} action={~p"/assets/bulk-purchase"} method="post" id="bulk-purchase-form">
+    <div class="mt-4 flex justify-end">
+      <.button
+        type="submit"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-brand rounded-md hover:bg-brand/90 disabled:opacity-50"
+        disabled={length(@assets) == 0}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 mr-2"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 000.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z" />
+        </svg>
+        Purchase Selected
+      </.button>
+    </div>
+  </.form>
+</div>

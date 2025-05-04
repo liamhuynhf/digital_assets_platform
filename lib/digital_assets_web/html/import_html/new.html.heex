@@ -1,0 +1,13 @@
+<div class="max-w-2xl mx-auto">
+  <.header>
+    Import Assets
+  </.header>
+
+  <.form :let={f} for={%{}} action={~p"/import"} multipart={true}>
+    <div class="space-y-4 mt-4">
+      <.input type="file" field={f[:file]} label="JSON File" accept=".json" required />
+    </div>
+
+    <.button class="mt-4">Import Assets</.button>
+  </.form>
+</div>
